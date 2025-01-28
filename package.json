@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/GbemigadEngineer/having-fun-learning-node.js/issues"
   },
-  "homepage": "https://github.com/GbemigadEngineer/having-fun-learning-node.js#readme"
+  "homepage": "https://github.com/GbemigadEngineer/having-fun-learning-node.js#readme",
+  "dependencies": {
+    "slugify": "^1.6.6"
+  }
 }
