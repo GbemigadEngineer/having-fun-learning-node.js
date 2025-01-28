@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/GbemigadEngineer/having-fun-learning-node.js#readme",
   "dependencies": {
+    "express": "^4.21.2",
     "slugify": "^1.6.6"
   }
 }
