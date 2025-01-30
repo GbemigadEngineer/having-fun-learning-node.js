@@ -41,11 +41,17 @@ fs.readFile("./output.json", "utf-8", (err, data) => {
         res.writeHead(404, { "Content-Type": "text/plain" });
         res.end("Error 404! Post not found.");
       }
-    } else if(parsedUrl.pathname === '/get/create'){
-        res.writeHead(200, { "Content-Type": "text/html" });
-        res.end
-    } 
-    else {
+    } else if (parsedUrl.pathname === "/get/create") {
+      fs.readFile("testform.html", (err, data) => {
+        if (err) {
+          res.writeHead(404, { "Content-Type": "text/plain" });
+          res.end("Error 404! Page not found.");
+        } else {
+          res.writeHead(200, { "Content-Type": "text/html" });
+          res.end(data);
+        }
+      });
+    } else {
       // Handle invalid routes
       res.writeHead(404, { "Content-Type": "text/plain" });
       res.end("Error 404! Page not found.");
