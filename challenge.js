@@ -19,8 +19,26 @@ greetEmiter.on("greet", (name) => {
 // create the greet event emiter
 greetEmiter.emit("greet", "Gbemiga");
 
-
 // Task 2
 // create a new instances for that event module
 
 const counter = new Emiter();
+
+// create a listners for the count event instance
+
+// listner one logs all the numbers in the array
+counter.on("count", (numarr) => {
+  numarr.forEach((element) => {
+    console.log(element);
+  });
+});
+// listner two logs the squared values of all the numbers in the array
+counter.on("count", (numarr) => {
+  numarr.forEach((element) => {
+    console.log(element ** 2);
+  });
+});
+
+// create the count event emitter
+
+counter.emit("count", [1, 2, 3, 4, 5]);
