@@ -1,5 +1,6 @@
 "use strict";
 
+const { count } = require("console");
 // Task 1
 // require the events modules
 const Emiter = require("events");
@@ -39,6 +40,26 @@ counter.on("count", (numarr) => {
   });
 });
 
-// create the count event emitter
+// task 2 correction:
+const EventEmitter = require("events");
 
-counter.emit("count", [1, 2, 3, 4, 5]);
+class CountEmitter extends EventEmitter {}
+
+const countEmitter = new CountEmitter();
+
+function logNumber(number) {
+  console.log("Number:", number);
+}
+
+function logSquare(number) {
+  console.log("Square:", number ** 2);
+}
+
+// create the listners
+countEmitter.on("count", logNumber);
+countEmitter.on("count", logSquare);
+
+const arrnum = [1, 2, 3, 4, 5];
+arrnum.forEach((num) => {
+  countEmitter.emit("count", num);
+});
