@@ -63,3 +63,15 @@ const arrnum = [1, 2, 3, 4, 5];
 arrnum.forEach((num) => {
   countEmitter.emit("count", num);
 });
+
+// Task 3
+
+class LoginEmitter extends EventEmitter {}
+
+const loginEmitter = new LoginEmitter();
+
+loginEmitter.once("first-login", () => {
+  console.log("First login event");
+});
+
+loginEmitter.emit("first-login");

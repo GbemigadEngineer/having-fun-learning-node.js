@@ -1,0 +1,45 @@
+Error Handling
+Create an emitter that:
+
+Emits an "error" event with an Error object
+
+Add proper error handling
+
+Show what happens without an error listener
+
+Intermediate Challenges
+Removing Listeners
+Create an emitter that:
+
+Adds 3 listeners to a "data" event
+
+Removes one listener after first emission
+
+Verify remaining listeners on subsequent emissions
+
+Custom EventEmitter Class
+Create a User class extending EventEmitter:
+
+Emits "user-created" when new user is added
+
+Emits "user-deleted" when removed
+
+Methods: createUser(), deleteUser()
+
+File Watcher with Events
+Create a file watcher that:
+
+Emits "file-changed" when a file is modified
+
+Emits "error" if file doesn't exist
+
+Use fs.watch and handle errors
+
+Event-Based HTTP Server
+Create an HTTP server where:
+
+Emits "request-home" for "/" route
+
+Emits "request-about" for "/about"
+
+Handle these events to send responses
