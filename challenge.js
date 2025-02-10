@@ -75,3 +75,46 @@ loginEmitter.once("first-login", () => {
 });
 
 loginEmitter.emit("first-login");
+
+// Task 4
+
+// create an error class that extends the EventEmitter class
+class ErrorEmiter extends EventEmitter {}
+
+// create an instance of the error class
+const errorEmiter = new ErrorEmiter();
+
+// create a listner for the error event instance
+errorEmiter.on("error", (error_statement) => {
+  console.log(`You are encountering ${error_statement} error`);
+});
+
+// determine error type
+function errortype(error) {
+  if (error === "Syntax" || error === undefined) {
+    return "Syntax";
+  } else if (error === "Reference") {
+    return "Reference";
+  }
+}
+
+// create a emiter for the error event instance
+errorEmiter.emit("error", errortype("Reference"));
+
+// taks 4
+class DataEmitter extends EventEmitter {}
+
+const dataEvent = new DataEmitter();
+
+dataEvent.on("data", (data) => {
+  console.log(`${data} is the data emitted more than once`);
+});
+dataEvent.once("data", (data) => {
+  console.log(`${data} is the data emitted only once`);
+});
+dataEvent.on("data", (data) => {
+  console.log(`${data} is the data emitted more than once`);
+});
+
+dataEvent.emit("data", "Data event");
+dataEvent.emit("data", "Data event - second emission");

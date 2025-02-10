@@ -1,22 +1,6 @@
-Error Handling
-Create an emitter that:
-
-Emits an "error" event with an Error object
-
-Add proper error handling
-
-Show what happens without an error listener
 
 Intermediate Challenges
 Removing Listeners
-Create an emitter that:
-
-Adds 3 listeners to a "data" event
-
-Removes one listener after first emission
-
-Verify remaining listeners on subsequent emissions
-
 Custom EventEmitter Class
 Create a User class extending EventEmitter:
 
