@@ -118,3 +118,47 @@ dataEvent.on("data", (data) => {
 
 dataEvent.emit("data", "Data event");
 dataEvent.emit("data", "Data event - second emission");
+
+// Coding challenges on streams
+
+// challenge 1
+
+const fs = require("fs");
+
+const readable = fs.createReadStream("output.json");
+
+readable.on("error", (err) => {
+  console.error("Error reading the JSON file:", err);
+});
+
+const writable = fs.createWriteStream("output.txt");
+
+writable.on("error", (err) => {
+  console.log("Error writing to the file:", err);
+});
+
+const piped = readable.pipe(writable);
+
+readable.pipe(writable).on("finish", () => {
+  console.log("Write completed");
+});
+
+
+//  task 2
+const server = require("http").createServer();
+
+server.on("request", (req, res) => {
+  const readbig = fs.createReadStream("bigfile.txt");
+
+  readbig.on("error", (err) => {
+    console.error("Error reading the big file:", err);
+  });
+  readbig.pipe(res);
+  readbig.pipe(res).on("finish", () => {
+    console.log("Write completed");
+  });
+});
+
+server.listen(5000, "127.0.0.1", () => {
+  console.log("Server is listening on port 5000");
+});
