@@ -172,7 +172,6 @@ transformRead.on("data", (chunk) => {
 transformRead.on("end", () => {
   writables.end();
 });
-writables.on()
 
 transformRead.on("error", (err) => {
   console.log("Error reading the file:", err);
@@ -180,4 +179,57 @@ transformRead.on("error", (err) => {
 
 writables.on("error", (err) => {
   console.log("Error writing to the file:", err);
+});
+
+// task 4
+
+// const writeCLIs = fs.createWriteStream("log.txt");
+
+// const readlineCLI = fs.createReadStream(process.stdin);
+
+// readlineCLI.on("data", (chunk) => {
+//   writeCLIs.write(chunk);
+//   if (chunk.toString().trim() === "exit") {
+//     writeCLIs.end();
+//   }
+// });
+
+// readlineCLI.on("error", (err) => {
+//   console.log("Error reading the file:", err);
+// });
+
+// readlineCLI.on("end", () => {
+//   writeCLIs.end();
+// });
+
+// correction for task 4
+
+const readline = require("readline");
+
+// create a writable stream for logging
+
+const writeCLI = fs.createWriteStream("log.txt", { flags: "a" });
+
+// setup CLI input reading
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+console.log(`Type something (type 'exit' to quit):`);
+
+rl.on("line", (input) => {
+  writeCLI.write(input + "\n");
+
+  if (input.trim().toLocaleLowerCase() === "exit") {
+    console.log("Goodbye!");
+    writeCLI.end();
+    rl.close();
+    process.exit();
+  }
+});
+
+rl.on("error", (err) => {
+  console.log("Error reading the input:", err);
 });
