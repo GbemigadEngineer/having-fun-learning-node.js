@@ -160,3 +160,24 @@ server.on("request", (req, res) => {
 server.listen(5000, "127.0.0.1", () => {
   console.log("Server is listening on port 5000");
 });
+
+//  task 3
+
+const transformRead = fs.createReadStream("output.json");
+const writables = fs.createWriteStream("output.txt");
+transformRead.on("data", (chunk) => {
+  writables.write(chunk.toString().toUpperCase());
+});
+
+transformRead.on("end", () => {
+  writables.end();
+});
+writables.on()
+
+transformRead.on("error", (err) => {
+  console.log("Error reading the file:", err);
+});
+
+writables.on("error", (err) => {
+  console.log("Error writing to the file:", err);
+});
