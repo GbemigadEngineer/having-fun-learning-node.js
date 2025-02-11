@@ -143,17 +143,15 @@ readable.pipe(writable).on("finish", () => {
   console.log("Write completed");
 });
 
-
 //  task 2
 const server = require("http").createServer();
 
 server.on("request", (req, res) => {
   const readbig = fs.createReadStream("bigfile.txt");
 
-  readbig.on("error", (err) => {
+  readbig.once("error", (err) => {
     console.error("Error reading the big file:", err);
   });
-  readbig.pipe(res);
   readbig.pipe(res).on("finish", () => {
     console.log("Write completed");
   });
