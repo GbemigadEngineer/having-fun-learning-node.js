@@ -233,3 +233,16 @@ rl.on("line", (input) => {
 rl.on("error", (err) => {
   console.log("Error reading the input:", err);
 });
+
+// Task 5
+const { pipeline } = require("stream");
+
+server.on("request", (req, res) => {
+  pipeline(fs.createReadStream("bigfile.txt"), res, (err) => {
+    if (err) {
+      console.error("Pipeline failed:", err);
+    } else {
+      console.log("Pipeline succeeded");
+    }
+  });
+});
