@@ -18,6 +18,8 @@
   "homepage": "https://github.com/GbemigadEngineer/having-fun-learning-node.js#readme",
   "dependencies": {
     "express": "^4.21.2",
-    "slugify": "^1.6.6"
+    "global": "^4.4.0",
+    "slugify": "^1.6.6",
+    "superagent": "^10.1.1"
   }
 }
