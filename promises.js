@@ -23,3 +23,19 @@ fetch("https://official-joke-api.appspot.com/random_joke")
   .catch((err) => {
     console.log("error getting data from API");
   });
+
+//    Another task
+
+const fS = require("fs").promises;
+
+//  use fs. promises.readfile() to read a file
+
+fS.readFile("output.txt", "utf8", (err, data) => {})
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+
