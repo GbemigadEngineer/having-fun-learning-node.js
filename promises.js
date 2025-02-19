@@ -3,6 +3,8 @@
 const superagent = require("superagent");
 const fs = require("fs");
 const { constrainedMemory } = require("process");
+const { resolve } = require("path");
+const { reject } = require("superagent/lib/request-base");
 
 // fetch the data from the API
 fetch("https://official-joke-api.appspot.com/random_joke")
@@ -38,4 +40,21 @@ fS.readFile("output.txt", "utf8", (err, data) => {})
     console.log(error);
   });
 
+// Coding challenge 2
 
+// Task 1
+const greeting = (seconds, greet) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(greet);
+    }, seconds * 1000);
+  });
+};
+
+greeting(3, "Hello from the other side!")
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
