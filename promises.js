@@ -58,3 +58,106 @@ greeting(3, "Hello from the other side!")
   .catch((err) => {
     console.log(err);
   });
+
+// Task 2
+
+const downloadfile = (size) => {
+  return new Promise((resolve, reject) => {
+    if (size > 50) {
+      return setTimeout(() => {
+        reject(new Error("You cannot download a file greater than 50MB!"));
+      }, 2 * 1000);
+    }
+    setTimeout(() => {
+      resolve("File downloaded successfully!");
+    }, 2 * 1000);
+  });
+};
+
+// downloadfile(200)
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.log(err.message);
+//   });
+
+function calling(size) {
+  return downloadfile(size)
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
+calling(10);
+
+//  Complete module tasks
+
+// Task 1
+// create a function
+const fakeDatabase = {
+  1: { id: 1, name: "John Doe" },
+  2: { id: 2, name: "Jane Smith" },
+  3: { id: 3, name: "Alice Johnson" },
+};
+
+function fetchUserData(id) {
+  return new Promise((resolve, reject) => {
+    if (id < 1) {
+      reject(new Error("Invalid User ID!"));
+    }
+    if (fakeDatabase[id] === undefined) {
+      reject(new Error("Object Does not exist in database"));
+    }
+    setTimeout(() => {
+      resolve(fakeDatabase[id]);
+    }, 2 * 1000);
+  });
+}
+
+fetchUserData(2)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
+
+// task 2
+
+function delayedMessage(message, delay) {
+  return new Promise((resolve, reject) => {
+    if (message === undefined || message === null) {
+      return reject(new Error("Message is missing! Please input a message"));
+    }
+    if (typeof delay !== "number")
+      return reject(new Error("Delay should be a number"));
+
+    setTimeout(() => {
+      resolve(message);
+    }, delay * 1000);
+  });
+}
+
+delayedMessage("We are the future of technology, we are genex tech!", 5)
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+const fetchMultipleUsers = async (ids) => {
+  try {
+    const allPro = ids.map((element) => fetchUserData(element));
+    const all = await Promise.all(allPro);
+    console.log(all);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+fetchMultipleUsers([1, 2, 3]);
